@@ -1,0 +1,735 @@
+class WallHandler {
+	static int row0, row1, row2, row3, row4, row5, row6, row7, row8, row9, row10, row11, row12, row13, row14, row15; 
+	
+	function void drawGameWalls() {
+		var int index, base, jindex, colBase;
+	
+		do WallHandler.drawLeftWall();
+		do WallHandler.drawUpperWall();
+		do WallHandler.drawRightWall();
+		do WallHandler.drawLowerWall();
+
+		/*
+			 ____
+			|  __|
+			| |
+			| |
+			| |
+			|_|
+		*/
+		do WallHandler.drawLeftUpWall(row2 + 2);
+		do WallHandler.drawHorizontalWall(row2 + 3);
+		do WallHandler.drawHorizontalEndRightWall(row2 + 4);
+		do WallHandler.drawVerticalWall(row3 + 2);
+		do WallHandler.drawVerticalWall(row4 + 2);
+		do WallHandler.drawVerticalWall(row5 + 2);
+		do WallHandler.drawVerticalWall(row6 + 2);
+		do WallHandler.drawVerticalEndDownWall(row7 + 2);
+		
+		/*
+			 ____
+			|__	 |
+			   | |
+			   | |
+			   | |
+			   |_|
+		*/
+		do WallHandler.drawRightUpWall(row2 + 29);
+		do WallHandler.drawHorizontalWall(row2 + 28);
+		do WallHandler.drawHorizontalEndLeftWall(row2 + 27);
+		do WallHandler.drawVerticalWall(row3 + 29);
+		do WallHandler.drawVerticalWall(row4 + 29);
+		do WallHandler.drawVerticalWall(row5 + 29);
+		do WallHandler.drawVerticalWall(row6 + 29);
+		do WallHandler.drawVerticalEndDownWall(row7 + 29);
+		
+		/*
+			 _
+			| |
+			| |
+			| |
+			| |__
+			|____|
+		*/
+		do WallHandler.drawVerticalEndUpWall(row9 + 2);
+		do WallHandler.drawVerticalWall(row10 + 2);
+		do WallHandler.drawVerticalWall(row11 + 2);
+		do WallHandler.drawVerticalWall(row12 + 2);
+		do WallHandler.drawLeftDownWall(row13 + 2);
+		do WallHandler.drawHorizontalWall(row13 + 3);
+		do WallHandler.drawHorizontalEndRightWall(row13 + 4);
+		
+		/*
+			    _
+			   | |
+			   | |
+			   | |
+			 __| |
+			|____|
+		*/
+		do WallHandler.drawVerticalEndUpWall(row9 + 29);
+		do WallHandler.drawVerticalWall(row10 + 29);
+		do WallHandler.drawVerticalWall(row11 + 29);
+		do WallHandler.drawVerticalWall(row12 + 29);
+		do WallHandler.drawRightDownWall(row13 + 29);
+		do WallHandler.drawHorizontalWall(row13 + 28);
+		do WallHandler.drawHorizontalEndLeftWall(row13 + 27);
+		
+		/*
+			 _
+			| |
+			|_|
+		*/
+		let index = 0;
+		
+		while(index < 2) {
+			// 1
+			do WallHandler.drawVerticalEndUpWall(row1 + Math.multiply(index, 19) + 6);
+			do WallHandler.drawVerticalEndDownWall(row2 + Math.multiply(index, 19) + 6);
+		
+			// 2
+			do WallHandler.drawVerticalEndUpWall(row13 + Math.multiply(index, 19) + 6);
+			do WallHandler.drawVerticalEndDownWall(row14 + Math.multiply(index, 19) + 6);
+		
+			let index = index + 1;
+		}
+		
+		/*
+			 ___
+			|   |
+			|___|
+		*/
+		do WallHandler.drawSquares();
+		
+		
+		/*
+			 ________________________
+			|						 |
+			|________________________|
+		*/
+		let index = 0;
+		let base = row2;
+		
+		while(index < 3) {
+			do WallHandler.drawLeftUpWall(base + 8);
+			do WallHandler.drawRightUpWall(base + 23);
+			do WallHandler.drawLeftDownWall(base + row1 + 8);
+			do WallHandler.drawRightDownWall(base + row1 + 23);
+			
+			let jindex = 0;
+			let colBase = 9;
+			
+			while(jindex < 14) {
+				do WallHandler.drawHorizontalWall(base + colBase);
+				do WallHandler.drawHorizontalWall(base + row1 + colBase);
+				
+				let jindex = jindex + 1;
+				let colBase = colBase + 1;
+			}
+			
+			let index = index + 1;
+			let base = base + row3;
+		}
+		
+		let jindex = 0;
+		let colBase = 9;
+		
+		do WallHandler.drawLeftUpWall(row11 + 8);
+		do WallHandler.drawRightUpWall(row11 + 23);
+		do WallHandler.drawVerticalWall(row12 + 8);
+		do WallHandler.drawVerticalWall(row12 + 23);
+		do WallHandler.drawLeftDownWall(row13 + 8);
+		do WallHandler.drawRightDownWall(row13 + 23);
+		
+		while(jindex < 14) {
+			do WallHandler.drawHorizontalWall(base + colBase);
+			do WallHandler.drawHorizontalWall(base + row2 + colBase);
+				
+			let jindex = jindex + 1;
+			let colBase = colBase + 1;
+		}
+		
+		return;
+	}
+	
+	function void drawSquares() {
+		var int index, base;
+		let index = 0;
+		let base = row4;
+	
+		while (index < 3) {
+			do WallHandler.drawLeftUpWall(base + 4);
+			do WallHandler.drawHorizontalWall(base + 5);
+			do WallHandler.drawRightUpWall(base + 6);
+			do WallHandler.drawLeftDownWall(base + row1 + 4);
+			do WallHandler.drawHorizontalWall(base + row1 + 5);
+			do WallHandler.drawRightDownWall(base + row1 + 6);
+			
+			do WallHandler.drawLeftUpWall(base + 25);
+			do WallHandler.drawHorizontalWall(base + 26);
+			do WallHandler.drawRightUpWall(base + 27);
+			do WallHandler.drawLeftDownWall(base + row1 + 25);
+			do WallHandler.drawHorizontalWall(base + row1 + 26);
+			do WallHandler.drawRightDownWall(base + row1 + 27);
+			
+			let index = index + 1;
+			let base = base + row3;
+		}
+		
+		return;
+	}
+	
+	function void drawLowerWall() {
+		var int index, base;
+		let index = 0;
+		let base = row15 + 1;
+		
+		while (index < 30) {
+			do WallHandler.drawHorizontalWall(base + index);
+			let index = index + 1;
+		}
+		
+		return;
+	}
+	
+	function void drawRightWall() {
+		var int index, location;
+		let index = 1;
+		let location = row1 + 31;
+		
+		while (index < 15) {
+			do WallHandler.drawVerticalWall(location);
+			let index = index + 1;
+			let location = location + row1;
+		}
+		
+		do WallHandler.drawRightDownWall(location);
+		
+		return;
+	}
+	
+	function void drawUpperWall() {
+		var int index;
+		let index = 1;
+		
+		while (index < 31) {
+			do WallHandler.drawHorizontalWall(index);
+			let index = index + 1;
+		}
+		
+		do WallHandler.drawRightUpWall(index);
+		
+		return;
+	}
+	
+	function void drawLeftWall() {
+		var int index, location;
+		let index = 1;
+		let location = row1;
+		
+		do WallHandler.drawLeftUpWall(0);
+		
+		while (index < 15) {
+			do WallHandler.drawVerticalWall(location);
+			let index = index + 1;
+			let location = location + row1;
+		}
+		
+		do WallHandler.drawLeftDownWall(location);
+		
+		return;
+	}
+	
+	function void drawVerticalEndUpWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1);
+		do Memory.poke(memAddress+96, -8185);
+		do Memory.poke(memAddress+128, -8185);
+		do Memory.poke(memAddress+160, -8185);
+		do Memory.poke(memAddress+192, -8185);
+		do Memory.poke(memAddress+224, -8185);
+		do Memory.poke(memAddress+256, -8185);
+		do Memory.poke(memAddress+288, -8185);
+		do Memory.poke(memAddress+320, -8185);
+		do Memory.poke(memAddress+352, -8185);
+		do Memory.poke(memAddress+384, -8185);
+		do Memory.poke(memAddress+416, -8185);
+		do Memory.poke(memAddress+448, -8185);
+		do Memory.poke(memAddress+480, -8185);
+		return;
+	}
+	
+	function void drawVerticalEndDownWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -8185);
+		do Memory.poke(memAddress+32, -8185);
+		do Memory.poke(memAddress+64, -8185);
+		do Memory.poke(memAddress+96, -8185);
+		do Memory.poke(memAddress+128, -8185);
+		do Memory.poke(memAddress+160, -8185);
+		do Memory.poke(memAddress+192, -8185);
+		do Memory.poke(memAddress+224, -8185);
+		do Memory.poke(memAddress+256, -8185);
+		do Memory.poke(memAddress+288, -8185);
+		do Memory.poke(memAddress+320, -8185);
+		do Memory.poke(memAddress+352, -8185);
+		do Memory.poke(memAddress+384, -8185);
+		do Memory.poke(memAddress+416, -1);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		
+		return;
+	}
+	
+	function void drawHorizontalEndLeftWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1);
+		do Memory.poke(memAddress+96, 7);
+		do Memory.poke(memAddress+128, 7);
+		do Memory.poke(memAddress+160, 7);
+		do Memory.poke(memAddress+192, 7);
+		do Memory.poke(memAddress+224, 7);
+		do Memory.poke(memAddress+256, 7);
+		do Memory.poke(memAddress+288, 7);
+		do Memory.poke(memAddress+320, 7);
+		do Memory.poke(memAddress+352, 7);
+		do Memory.poke(memAddress+384, 7);
+		do Memory.poke(memAddress+416, -1);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		
+		return;
+	}
+	
+	function void drawHorizontalEndRightWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1);
+		do Memory.poke(memAddress+96, -8192);
+		do Memory.poke(memAddress+128, -8192);
+		do Memory.poke(memAddress+160, -8192);
+		do Memory.poke(memAddress+192, -8192);
+		do Memory.poke(memAddress+224, -8192);
+		do Memory.poke(memAddress+256, -8192);
+		do Memory.poke(memAddress+288, -8192);
+		do Memory.poke(memAddress+320, -8192);
+		do Memory.poke(memAddress+352, -8192);
+		do Memory.poke(memAddress+384, -8192);
+		do Memory.poke(memAddress+416, -1);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		
+		return;
+	}
+	
+	function void drawVerticalWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -8185);
+		do Memory.poke(memAddress+32, -8185);
+		do Memory.poke(memAddress+64, -8185);
+		do Memory.poke(memAddress+96, -8185);
+		do Memory.poke(memAddress+128, -8185);
+		do Memory.poke(memAddress+160, -8185);
+		do Memory.poke(memAddress+192, -8185);
+		do Memory.poke(memAddress+224, -8185);
+		do Memory.poke(memAddress+256, -8185);
+		do Memory.poke(memAddress+288, -8185);
+		do Memory.poke(memAddress+320, -8185);
+		do Memory.poke(memAddress+352, -8185);
+		do Memory.poke(memAddress+384, -8185);
+		do Memory.poke(memAddress+416, -8185);
+		do Memory.poke(memAddress+448, -8185);
+		do Memory.poke(memAddress+480, -8185);
+		
+		return;
+	}
+
+	function void drawHorizontalWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+	
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, -1);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		
+		return;
+	}
+
+	function void drawRightUpWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1);
+		do Memory.poke(memAddress+96, -8192);
+		do Memory.poke(memAddress+128, -8192);
+		do Memory.poke(memAddress+160, -8192);
+		do Memory.poke(memAddress+192, -8192);
+		do Memory.poke(memAddress+224, -8192);
+		do Memory.poke(memAddress+256, -8192);
+		do Memory.poke(memAddress+288, -8192);
+		do Memory.poke(memAddress+320, -8192);
+		do Memory.poke(memAddress+352, -8192);
+		do Memory.poke(memAddress+384, -8192);
+		do Memory.poke(memAddress+416, -8185);
+		do Memory.poke(memAddress+448, -8185);
+		do Memory.poke(memAddress+480, -8185);
+		
+		return;
+	}
+
+	function void drawRightDownWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -8185);
+		do Memory.poke(memAddress+32, -8185);
+		do Memory.poke(memAddress+64, -8185);
+		do Memory.poke(memAddress+96, -8192);
+		do Memory.poke(memAddress+128, -8192);
+		do Memory.poke(memAddress+160, -8192);
+		do Memory.poke(memAddress+192, -8192);
+		do Memory.poke(memAddress+224, -8192);
+		do Memory.poke(memAddress+256, -8192);
+		do Memory.poke(memAddress+288, -8192);
+		do Memory.poke(memAddress+320, -8192);
+		do Memory.poke(memAddress+352, -8192);
+		do Memory.poke(memAddress+384, -8192);
+		do Memory.poke(memAddress+416, -1);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		
+		return;
+	}
+
+	function void drawLeftDownWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -8185);
+		do Memory.poke(memAddress+32, -8185);
+		do Memory.poke(memAddress+64, -8185);
+		do Memory.poke(memAddress+96, 7);
+		do Memory.poke(memAddress+128, 7);
+		do Memory.poke(memAddress+160, 7);
+		do Memory.poke(memAddress+192, 7);
+		do Memory.poke(memAddress+224, 7);
+		do Memory.poke(memAddress+256, 7);
+		do Memory.poke(memAddress+288, 7);
+		do Memory.poke(memAddress+320, 7);
+		do Memory.poke(memAddress+352, 7);
+		do Memory.poke(memAddress+384, 7);
+		do Memory.poke(memAddress+416, -1);
+		do Memory.poke(memAddress+448, -1);
+		do Memory.poke(memAddress+480, -1);
+		
+		return;
+	}
+
+	function void drawLeftUpWall(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, -1);
+		do Memory.poke(memAddress+32, -1);
+		do Memory.poke(memAddress+64, -1);
+		do Memory.poke(memAddress+96, 7);
+		do Memory.poke(memAddress+128, 7);
+		do Memory.poke(memAddress+160, 7);
+		do Memory.poke(memAddress+192, 7);
+		do Memory.poke(memAddress+224, 7);
+		do Memory.poke(memAddress+256, 7);
+		do Memory.poke(memAddress+288, 7);
+		do Memory.poke(memAddress+320, 7);
+		do Memory.poke(memAddress+352, 7);
+		do Memory.poke(memAddress+384, 7);
+		do Memory.poke(memAddress+416, -8185);
+		do Memory.poke(memAddress+448, -8185);
+		do Memory.poke(memAddress+480, -8185);
+		
+		return;
+	}
+	
+	function void drawFood(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 384);
+		do Memory.poke(memAddress+192, 960);
+		do Memory.poke(memAddress+224, 2016);
+		do Memory.poke(memAddress+256, 2016);
+		do Memory.poke(memAddress+288, 960);
+		do Memory.poke(memAddress+320, 384);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
+	
+	function void foods() {
+		var int counter;
+		let counter = 8;
+		// 1st and 30th columns
+		do WallHandler.drawFood(row2 + 1);
+		do WallHandler.drawFood(row3 + 1);
+		do WallHandler.drawFood(row4 + 1);
+		do WallHandler.drawFood(row5 + 1);
+		do WallHandler.drawFood(row6 + 1);
+		do WallHandler.drawFood(row7 + 1);
+		do WallHandler.drawFood(row8 + 1);
+		do WallHandler.drawFood(row9 + 1);
+		do WallHandler.drawFood(row10 + 1);
+		do WallHandler.drawFood(row11 + 1);
+		do WallHandler.drawFood(row12 + 1);
+		do WallHandler.drawFood(row13 + 1);
+		do WallHandler.drawFood(row14 + 1);
+		
+		do WallHandler.drawFood(row1 + 30); 
+		do WallHandler.drawFood(row2 + 30);
+		do WallHandler.drawFood(row3 + 30);
+		do WallHandler.drawFood(row4 + 30);
+		do WallHandler.drawFood(row5 + 30);
+		do WallHandler.drawFood(row6 + 30);
+		do WallHandler.drawFood(row7 + 30);
+		do WallHandler.drawFood(row8 + 30);
+		do WallHandler.drawFood(row9 + 30);
+		do WallHandler.drawFood(row10 + 30);
+		do WallHandler.drawFood(row11 + 30);
+		do WallHandler.drawFood(row12 + 30);
+		do WallHandler.drawFood(row13 + 30);
+		
+		
+		// 2nd and 29th columns
+		do WallHandler.drawFood(row1 + 2);
+		do WallHandler.drawFood(row8 + 2);
+		do WallHandler.drawFood(row14 + 2);
+		
+		do WallHandler.drawFood(row1 + 29);
+		do WallHandler.drawFood(row8 + 29);
+		do WallHandler.drawFood(row14 + 29);
+		// 3rd and 28th columns
+		do WallHandler.drawFood(row1 + 3);
+		do WallHandler.drawFood(row3 + 3);
+		do WallHandler.drawFood(row4 + 3);
+		do WallHandler.drawFood(row5 + 3);
+		do WallHandler.drawFood(row6 + 3);
+		do WallHandler.drawFood(row7 + 3);
+		do WallHandler.drawFood(row8 + 3);
+		do WallHandler.drawFood(row9 + 3);
+		do WallHandler.drawFood(row10 + 3);
+		do WallHandler.drawFood(row11 + 3);
+		do WallHandler.drawFood(row12 + 3);
+		do WallHandler.drawFood(row14 + 3);
+		
+		do WallHandler.drawFood(row1 + 28);
+		do WallHandler.drawFood(row3 + 28);
+		do WallHandler.drawFood(row4 + 28);
+		do WallHandler.drawFood(row5 + 28);
+		do WallHandler.drawFood(row6 + 28);
+		do WallHandler.drawFood(row7 + 28);
+		do WallHandler.drawFood(row8 + 28);
+		do WallHandler.drawFood(row9 + 28);
+		do WallHandler.drawFood(row10 + 28);
+		do WallHandler.drawFood(row11 + 28);
+		do WallHandler.drawFood(row12 + 28);
+		do WallHandler.drawFood(row14 + 28);
+		// 4th column and 27th
+		do WallHandler.drawFood(row1 + 4);
+		do WallHandler.drawFood(row3 + 4);
+		do WallHandler.drawFood(row6 + 4);
+		do WallHandler.drawFood(row9 + 4);
+		do WallHandler.drawFood(row12 + 4);
+		do WallHandler.drawFood(row14 + 4);
+		
+		do WallHandler.drawFood(row1 + 27);
+		do WallHandler.drawFood(row3 + 27);
+		do WallHandler.drawFood(row6 + 27);
+		do WallHandler.drawFood(row9 + 27);
+		do WallHandler.drawFood(row12 + 27);
+		do WallHandler.drawFood(row14 + 27);
+		// 5th and 26th columns
+		do WallHandler.drawFood(row1 + 5);
+		do WallHandler.drawFood(row2 + 5);
+		do WallHandler.drawFood(row3 + 5);
+		do WallHandler.drawFood(row6 + 5);
+		do WallHandler.drawFood(row9 + 5);
+		do WallHandler.drawFood(row12 + 5);
+		do WallHandler.drawFood(row13 + 5);
+		do WallHandler.drawFood(row14 + 5);
+		
+		do WallHandler.drawFood(row1 + 26);
+		do WallHandler.drawFood(row2 + 26);
+		do WallHandler.drawFood(row3 + 26);
+		do WallHandler.drawFood(row6 + 26);
+		do WallHandler.drawFood(row9 + 26);
+		do WallHandler.drawFood(row12 + 26);
+		do WallHandler.drawFood(row13 + 26);
+		do WallHandler.drawFood(row14 + 26);
+		// 6th and 25th columns
+		do WallHandler.drawFood(row3 + 6);
+		do WallHandler.drawFood(row6 + 6);
+		do WallHandler.drawFood(row9 + 6);
+		do WallHandler.drawFood(row12 + 6);
+		
+		do WallHandler.drawFood(row3 + 25);
+		do WallHandler.drawFood(row6 + 25);
+		do WallHandler.drawFood(row9 + 25);
+		do WallHandler.drawFood(row12 + 25);
+		// 7th and 24th columns
+		do WallHandler.drawFood(row1 + 7);
+		do WallHandler.drawFood(row2 + 7);
+		do WallHandler.drawFood(row3 + 7);
+		do WallHandler.drawFood(row4 + 7);
+		do WallHandler.drawFood(row5 + 7);
+		do WallHandler.drawFood(row6 + 7);
+		do WallHandler.drawFood(row7 + 7);
+		do WallHandler.drawFood(row8 + 7);
+		do WallHandler.drawFood(row9 + 7);
+		do WallHandler.drawFood(row10 + 7);
+		do WallHandler.drawFood(row11 + 7);
+		do WallHandler.drawFood(row12 + 7);
+		do WallHandler.drawFood(row13 + 7);
+		do WallHandler.drawFood(row14 + 7);
+		
+		do WallHandler.drawFood(row1 + 24);
+		do WallHandler.drawFood(row2 + 24);
+		do WallHandler.drawFood(row3 + 24);
+		do WallHandler.drawFood(row4 + 24);
+		do WallHandler.drawFood(row5 + 24);
+		do WallHandler.drawFood(row6 + 24);
+		do WallHandler.drawFood(row7 + 24);
+		do WallHandler.drawFood(row8 + 24);
+		do WallHandler.drawFood(row9 + 24);
+		do WallHandler.drawFood(row10 + 24);
+		do WallHandler.drawFood(row11 + 24);
+		do WallHandler.drawFood(row12 + 24);
+		do WallHandler.drawFood(row13 + 24);
+		do WallHandler.drawFood(row14 + 24);
+		// 8th to 23th column
+		while (counter < 24) {
+		do WallHandler.drawFood(row1 + counter);
+		do WallHandler.drawFood(row4 + counter);
+		do WallHandler.drawFood(row7 + counter);
+		do WallHandler.drawFood(row10 + counter);
+		do WallHandler.drawFood(row14 + counter);
+		let counter = counter + 1;
+		}
+		return;
+		}
+	
+	function void initStatics() {
+		let row0  = 0;
+		let row1 = 512;
+		let row2 = 1024;
+		let row3 = 1536; 
+		let row4 = 2048;
+		let row5 = 2560;
+		let row6 = 3072;
+		let row7 = 3584;
+		let row8 = 4096;
+		let row9 = 4608;
+		let row10 = 5120;
+		let row11 = 5632;
+		let row12 = 6144;
+		let row13 = 6656;
+		let row14 = 7168;
+		let row15 = 7680; 
+		
+		return;
+	}
+	
+	function int getRow0() {
+		return row0;
+	}
+	
+	function int getRow1() {
+		return row1;
+	}
+	
+	function int getRow2() {
+		return row2;
+	}
+	
+	function int getRow3() {
+		return row3;
+	}
+	
+	function int getRow4() {
+		return row4;
+	}
+	
+	function int getRow5() {
+		return row5;
+	}
+	
+	function int getRow6() {
+		return row6;
+	}
+	
+	function int getRow7() {
+		return row7;
+	}
+	
+	function int getRow8() {
+		return row8;
+	}
+	
+	function int getRow9() {
+		return row9;
+	}
+	
+	function int getRow10() {
+		return row10;
+	}
+	
+	function int getRow11() {
+		return row11;
+	}
+	
+	function int getRow12() {
+		return row12;
+	}
+	
+	function int getRow13() {
+		return row13;
+	}
+	
+	function int getRow14() {
+		return row14;
+	}
+}

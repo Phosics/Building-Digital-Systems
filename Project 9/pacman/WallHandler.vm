@@ -1,0 +1,2533 @@
+function WallHandler.drawGameWalls 4
+call WallHandler.drawLeftWall 0
+pop temp 0
+call WallHandler.drawUpperWall 0
+pop temp 0
+call WallHandler.drawRightWall 0
+pop temp 0
+call WallHandler.drawLowerWall 0
+pop temp 0
+push static 2
+push constant 2
+add
+call WallHandler.drawLeftUpWall 1
+pop temp 0
+push static 2
+push constant 3
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push static 2
+push constant 4
+add
+call WallHandler.drawHorizontalEndRightWall 1
+pop temp 0
+push static 3
+push constant 2
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 4
+push constant 2
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 5
+push constant 2
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 6
+push constant 2
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 7
+push constant 2
+add
+call WallHandler.drawVerticalEndDownWall 1
+pop temp 0
+push static 2
+push constant 29
+add
+call WallHandler.drawRightUpWall 1
+pop temp 0
+push static 2
+push constant 28
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push static 2
+push constant 27
+add
+call WallHandler.drawHorizontalEndLeftWall 1
+pop temp 0
+push static 3
+push constant 29
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 4
+push constant 29
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 5
+push constant 29
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 6
+push constant 29
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 7
+push constant 29
+add
+call WallHandler.drawVerticalEndDownWall 1
+pop temp 0
+push static 9
+push constant 2
+add
+call WallHandler.drawVerticalEndUpWall 1
+pop temp 0
+push static 10
+push constant 2
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 11
+push constant 2
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 12
+push constant 2
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 13
+push constant 2
+add
+call WallHandler.drawLeftDownWall 1
+pop temp 0
+push static 13
+push constant 3
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push static 13
+push constant 4
+add
+call WallHandler.drawHorizontalEndRightWall 1
+pop temp 0
+push static 9
+push constant 29
+add
+call WallHandler.drawVerticalEndUpWall 1
+pop temp 0
+push static 10
+push constant 29
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 11
+push constant 29
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 12
+push constant 29
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 13
+push constant 29
+add
+call WallHandler.drawRightDownWall 1
+pop temp 0
+push static 13
+push constant 28
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push static 13
+push constant 27
+add
+call WallHandler.drawHorizontalEndLeftWall 1
+pop temp 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 2
+lt
+not
+if-goto WHILE_END0
+push static 1
+push local 0
+push constant 19
+call Math.multiply 2
+add
+push constant 6
+add
+call WallHandler.drawVerticalEndUpWall 1
+pop temp 0
+push static 2
+push local 0
+push constant 19
+call Math.multiply 2
+add
+push constant 6
+add
+call WallHandler.drawVerticalEndDownWall 1
+pop temp 0
+push static 13
+push local 0
+push constant 19
+call Math.multiply 2
+add
+push constant 6
+add
+call WallHandler.drawVerticalEndUpWall 1
+pop temp 0
+push static 14
+push local 0
+push constant 19
+call Math.multiply 2
+add
+push constant 6
+add
+call WallHandler.drawVerticalEndDownWall 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+call WallHandler.drawSquares 0
+pop temp 0
+push constant 0
+pop local 0
+push static 2
+pop local 1
+label WHILE_EXP1
+push local 0
+push constant 3
+lt
+not
+if-goto WHILE_END1
+push local 1
+push constant 8
+add
+call WallHandler.drawLeftUpWall 1
+pop temp 0
+push local 1
+push constant 23
+add
+call WallHandler.drawRightUpWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 8
+add
+call WallHandler.drawLeftDownWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 23
+add
+call WallHandler.drawRightDownWall 1
+pop temp 0
+push constant 0
+pop local 2
+push constant 9
+pop local 3
+label WHILE_EXP2
+push local 2
+push constant 14
+lt
+not
+if-goto WHILE_END2
+push local 1
+push local 3
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push local 3
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP2
+label WHILE_END2
+push local 0
+push constant 1
+add
+pop local 0
+push local 1
+push static 3
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+pop local 2
+push constant 9
+pop local 3
+push static 11
+push constant 8
+add
+call WallHandler.drawLeftUpWall 1
+pop temp 0
+push static 11
+push constant 23
+add
+call WallHandler.drawRightUpWall 1
+pop temp 0
+push static 12
+push constant 8
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 12
+push constant 23
+add
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push static 13
+push constant 8
+add
+call WallHandler.drawLeftDownWall 1
+pop temp 0
+push static 13
+push constant 23
+add
+call WallHandler.drawRightDownWall 1
+pop temp 0
+label WHILE_EXP3
+push local 2
+push constant 14
+lt
+not
+if-goto WHILE_END3
+push local 1
+push local 3
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 1
+push static 2
+add
+push local 3
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP3
+label WHILE_END3
+push constant 0
+return
+function WallHandler.drawSquares 2
+push constant 0
+pop local 0
+push static 4
+pop local 1
+label WHILE_EXP0
+push local 0
+push constant 3
+lt
+not
+if-goto WHILE_END0
+push local 1
+push constant 4
+add
+call WallHandler.drawLeftUpWall 1
+pop temp 0
+push local 1
+push constant 5
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 1
+push constant 6
+add
+call WallHandler.drawRightUpWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 4
+add
+call WallHandler.drawLeftDownWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 5
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 6
+add
+call WallHandler.drawRightDownWall 1
+pop temp 0
+push local 1
+push constant 25
+add
+call WallHandler.drawLeftUpWall 1
+pop temp 0
+push local 1
+push constant 26
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 1
+push constant 27
+add
+call WallHandler.drawRightUpWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 25
+add
+call WallHandler.drawLeftDownWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 26
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 1
+push static 1
+add
+push constant 27
+add
+call WallHandler.drawRightDownWall 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+push local 1
+push static 3
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function WallHandler.drawLowerWall 2
+push constant 0
+pop local 0
+push static 15
+push constant 1
+add
+pop local 1
+label WHILE_EXP0
+push local 0
+push constant 30
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 0
+add
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function WallHandler.drawRightWall 2
+push constant 1
+pop local 0
+push static 1
+push constant 31
+add
+pop local 1
+label WHILE_EXP0
+push local 0
+push constant 15
+lt
+not
+if-goto WHILE_END0
+push local 1
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+push local 1
+push static 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 1
+call WallHandler.drawRightDownWall 1
+pop temp 0
+push constant 0
+return
+function WallHandler.drawUpperWall 1
+push constant 1
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 31
+lt
+not
+if-goto WHILE_END0
+push local 0
+call WallHandler.drawHorizontalWall 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+call WallHandler.drawRightUpWall 1
+pop temp 0
+push constant 0
+return
+function WallHandler.drawLeftWall 2
+push constant 1
+pop local 0
+push static 1
+pop local 1
+push constant 0
+call WallHandler.drawLeftUpWall 1
+pop temp 0
+label WHILE_EXP0
+push local 0
+push constant 15
+lt
+not
+if-goto WHILE_END0
+push local 1
+call WallHandler.drawVerticalWall 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+push local 1
+push static 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 1
+call WallHandler.drawLeftDownWall 1
+pop temp 0
+push constant 0
+return
+function WallHandler.drawVerticalEndUpWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawVerticalEndDownWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawHorizontalEndLeftWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawHorizontalEndRightWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawVerticalWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawHorizontalWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawRightUpWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawRightDownWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8192
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawLeftDownWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawLeftUpWall 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 8185
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.drawFood 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function WallHandler.foods 1
+push constant 8
+pop local 0
+push static 2
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 4
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 5
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 7
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 10
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 11
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 13
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 1
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 2
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 4
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 5
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 7
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 10
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 11
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 13
+push constant 30
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 2
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 2
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 2
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 29
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 29
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 29
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 4
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 5
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 7
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 10
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 11
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 3
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 4
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 5
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 7
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 10
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 11
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 28
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 4
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 4
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 4
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 4
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 4
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 4
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 27
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 27
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 27
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 27
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 27
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 27
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 2
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 13
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 5
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 2
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 13
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 26
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 6
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 6
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 6
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 6
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 25
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 25
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 25
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 25
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 2
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 4
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 5
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 7
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 10
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 11
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 13
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 7
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 1
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 2
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 3
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 4
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 5
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 6
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 7
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 8
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 9
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 10
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 11
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 12
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 13
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push constant 24
+add
+call WallHandler.drawFood 1
+pop temp 0
+label WHILE_EXP0
+push local 0
+push constant 24
+lt
+not
+if-goto WHILE_END0
+push static 1
+push local 0
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 4
+push local 0
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 7
+push local 0
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 10
+push local 0
+add
+call WallHandler.drawFood 1
+pop temp 0
+push static 14
+push local 0
+add
+call WallHandler.drawFood 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function WallHandler.initStatics 0
+push constant 0
+pop static 0
+push constant 512
+pop static 1
+push constant 1024
+pop static 2
+push constant 1536
+pop static 3
+push constant 2048
+pop static 4
+push constant 2560
+pop static 5
+push constant 3072
+pop static 6
+push constant 3584
+pop static 7
+push constant 4096
+pop static 8
+push constant 4608
+pop static 9
+push constant 5120
+pop static 10
+push constant 5632
+pop static 11
+push constant 6144
+pop static 12
+push constant 6656
+pop static 13
+push constant 7168
+pop static 14
+push constant 7680
+pop static 15
+push constant 0
+return
+function WallHandler.getRow0 0
+push static 0
+return
+function WallHandler.getRow1 0
+push static 1
+return
+function WallHandler.getRow2 0
+push static 2
+return
+function WallHandler.getRow3 0
+push static 3
+return
+function WallHandler.getRow4 0
+push static 4
+return
+function WallHandler.getRow5 0
+push static 5
+return
+function WallHandler.getRow6 0
+push static 6
+return
+function WallHandler.getRow7 0
+push static 7
+return
+function WallHandler.getRow8 0
+push static 8
+return
+function WallHandler.getRow9 0
+push static 9
+return
+function WallHandler.getRow10 0
+push static 10
+return
+function WallHandler.getRow11 0
+push static 11
+return
+function WallHandler.getRow12 0
+push static 12
+return
+function WallHandler.getRow13 0
+push static 13
+return
+function WallHandler.getRow14 0
+push static 14
+return

@@ -1,0 +1,428 @@
+class PacmanGame {
+	field Pacman pacman;
+	field Enemy enemy1;
+	field Enemy enemy2;
+	field Enemy enemy3;
+	field double direction; // 0=none, 1=up, 2=down, 3=left, 4=right
+	field Array availableSpaces;
+	field Array visitedLocations;
+	field int length;
+	field int visitedLocationsCurrentIndex;
+	
+	/** Constructs a new Pacman Game. */
+	constructor PacmanGame new() {
+		do createAvailableMovesArray();
+		do initVisitedArray();
+	
+		let direction = 0;
+		
+		return this;
+	}
+	
+	/** Disposes this game. */
+	method void dispose() {
+		do enemy1.dispose();
+		do enemy2.dispose();
+		do enemy3.dispose();
+		do pacman.dispose();
+		do Memory.deAlloc(visitedLocations);
+		do Memory.deAlloc(availableSpaces);
+		do Memory.deAlloc(this);
+		
+		return;
+	}
+
+	method Pacman getPacman() {
+		return pacman;
+	}
+	
+	/** Moves the square in the current direction. */
+	method void movePacman() { 
+		if (direction = 1) { do pacman.moveUp(); }
+		if (direction = 2) { do pacman.moveDown(); }
+		if (direction = 3) { do pacman.moveLeft(); }
+		if (direction = 4) { do pacman.moveRight(); }
+		do Sys.wait(120);  // delays the next movement
+      
+		return;
+	}
+
+   /** Runs the game: handles the user's inputs and moves the square accordingly */
+	method void run() {
+		var char key;  // the key currently pressed by the user
+		var boolean exit, win, finishGame;
+		var int seed;
+		
+		let exit = false;
+		let seed = 0;
+		
+		do printStartGame();
+		
+		while(~exit & ~(key = 128)) {
+			let key = Keyboard.keyPressed();
+			let seed = seed + 1;
+			
+			if (key = 81) {
+				let exit = true;
+			}
+		}
+		
+		do Random.setSeed(seed);
+		do Screen.clearScreen();
+		
+		let pacman = Pacman.new(availableSpaces);
+		let enemy1 = Enemy.new(this, availableSpaces, length, WallHandler.getRow14() + 30);
+		let enemy2 = Enemy.new(this, availableSpaces, length, WallHandler.getRow1() + 30);
+		let enemy3 = Enemy.new(this, availableSpaces, length, WallHandler.getRow14() + 1);
+		do WallHandler.drawGameWalls();
+		do WallHandler.foods();
+		
+		while(~exit) {
+			let win = false;
+			let finishGame = false;
+		
+			while (~exit & ~finishGame) {
+				// waits for a key to be pressed
+				while (key = 0 & ~(exit) & ~(finishGame)) {
+					let key = Keyboard.keyPressed();
+					
+					do movePacman();
+					do visit(pacman.getLocation());
+					
+					// Loss
+					if(pacman.getLocation() = enemy1.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy2.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy3.getLocation()) {
+						let finishGame = true; }
+					
+					
+				
+					do enemy1.move();
+					do enemy2.move();
+					do enemy3.move();
+					
+					// Win
+					if(isGameFinished()) {
+						let win = true;
+						let finishGame = true;
+					}
+					
+					// Loss
+					if(pacman.getLocation() = enemy1.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy2.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy3.getLocation()) {
+						let finishGame = true; }
+				}
+				
+				if (key = 81)  { let exit = true; }     // q key
+				if (key = 131) { let direction = 1; }   // up arrow
+				if (key = 133) { let direction = 2; }   // down arrow
+				if (key = 130) { let direction = 3; }   // left arrow
+				if (key = 132) { let direction = 4; }   // right arrow
+				
+				// waits for the key to be released
+				while (~(key = 0) & ~(exit) & ~(finishGame)) {
+					let key = Keyboard.keyPressed();
+					
+					do movePacman();
+					do visit(pacman.getLocation());
+					
+					// Loss
+					if(pacman.getLocation() = enemy1.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy2.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy3.getLocation()) {
+						let finishGame = true; }
+					
+					do enemy1.move();
+					do enemy2.move();
+					do enemy3.move();
+					
+					// Win
+					if(isGameFinished()) {
+						let win = true;
+						let finishGame = true;
+					}
+					
+					// Loss
+					if(pacman.getLocation() = enemy1.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy2.getLocation()) {
+						let finishGame = true;	}
+					if (pacman.getLocation() = enemy3.getLocation()) {
+						let finishGame = true; }
+				}
+			}
+			
+			if(finishGame) {
+				do printEndGame(win);
+				
+				while (~(key = 128) & ~(exit)) {
+					let key = Keyboard.keyPressed();
+					
+					if (key = 81) { 
+						let exit = true;
+					}
+				}
+				
+				if(~exit) {
+					do restartGame();
+				}
+			}
+		
+		}
+		
+		return;
+	}
+	
+	method void restartGame() {
+		do Memory.deAlloc(visitedLocations);
+		do initVisitedArray();
+		
+		do pacman.dispose();
+		do enemy1.dispose();
+		do enemy2.dispose();
+		do enemy3.dispose();
+		
+		let pacman = Pacman.new(availableSpaces);
+		let enemy1 = Enemy.new(this, availableSpaces, length, WallHandler.getRow14() + 30);
+		let enemy2 = Enemy.new(this, availableSpaces, length, WallHandler.getRow1() + 30);
+		let enemy3 = Enemy.new(this, availableSpaces, length, WallHandler.getRow14() + 1);
+		
+		do WallHandler.drawGameWalls();
+		do WallHandler.foods();
+		
+		let direction = 0;
+		
+		return;
+	}
+	
+	method void printStartGame() {
+		do Output.moveCursor(8, 14);
+		do Output.printString("Welcome to the Pacman kingdom");
+		do Output.moveCursor(10, 14);
+		do Output.printString("Press Enter to continue");
+		do Output.moveCursor(11, 14);
+		do Output.printString("Press 'q' to exit");
+		do Output.moveCursor(13, 14);
+		do Output.printString("Made By:Itzik Baruch and Dolev Binness");
+		
+		return;
+	}
+	
+	method void printEndGame(boolean isWin) {
+		do Screen.clearScreen();
+		
+		if(isWin) {
+			do Output.moveCursor(8, 14);
+			do Output.printString("You Won");
+		} else {
+			do Output.moveCursor(8, 14);
+			do Output.printString("You Lost");
+		}
+		
+		do Output.moveCursor(9, 14);
+		do Output.printString("Press Enter to continue");
+		do Output.moveCursor(10, 14);
+		do Output.printString("Press 'q' to exit");
+		
+		return;
+	}
+	
+	method boolean isVisited(int location) {
+		var int index;
+		let index = 0;
+		
+		while(index < visitedLocationsCurrentIndex) {
+			if(visitedLocations[index] = location) {
+				return true;
+			}
+				
+			let index = index + 1;
+		}
+		
+		return false;
+	}
+	
+	method boolean isGameFinished() {
+		return visitedLocationsCurrentIndex = (length - 1);
+	}
+	
+	method void visit(int location) {
+		if(isVisited(location)) {
+			return;
+		}
+		
+		let visitedLocations[visitedLocationsCurrentIndex] = location;
+		let visitedLocationsCurrentIndex = visitedLocationsCurrentIndex + 1;
+		
+		return;
+	}
+	
+	method void initVisitedArray() {
+		let visitedLocations = Array.new(length);
+		
+		let visitedLocations[0] = WallHandler.getRow1() + 1;
+		let visitedLocations[1] = WallHandler.getRow14() + 30;
+		
+		let visitedLocationsCurrentIndex = 2;
+		
+		return;
+	}
+	
+	method void createAvailableMovesArray() {
+		var int index, tempLocation;
+		
+		let length = 203;
+		let availableSpaces = Array.new(length);
+		
+		// cols 1, 30 -> from 0 to 27
+		let index = 0;
+		let tempLocation = WallHandler.getRow1();
+		
+		while (index < 14) {
+			let availableSpaces[index] = tempLocation + 1;
+			let availableSpaces[index + 14] = tempLocation + 30;
+			
+			let tempLocation = tempLocation + WallHandler.getRow1();
+			let index = index + 1;
+		}
+		
+		// cols 2, 29 -> from 28 to 33
+		let availableSpaces[28] = WallHandler.getRow1() + 2;
+		let availableSpaces[29] = WallHandler.getRow8() + 2;
+		let availableSpaces[30] = WallHandler.getRow14() + 2;
+		
+		let availableSpaces[31] = WallHandler.getRow1() + 29;
+		let availableSpaces[32] = WallHandler.getRow8() + 29;
+		let availableSpaces[33] = WallHandler.getRow14() + 29;
+		
+		// cols 3, 28 -> from 34 to 57
+		let availableSpaces[34] = WallHandler.getRow1() + 3;
+		let availableSpaces[35] = WallHandler.getRow3() + 3;
+		let availableSpaces[36] = WallHandler.getRow4() + 3;
+		let availableSpaces[37] = WallHandler.getRow5() + 3;
+		let availableSpaces[38] = WallHandler.getRow6() + 3;
+		let availableSpaces[39] = WallHandler.getRow7() + 3;
+		let availableSpaces[40] = WallHandler.getRow8() + 3;
+		let availableSpaces[41] = WallHandler.getRow9() + 3;
+		let availableSpaces[42] = WallHandler.getRow10() + 3;
+		let availableSpaces[43] = WallHandler.getRow11() + 3;
+		let availableSpaces[44] = WallHandler.getRow12() + 3;
+		let availableSpaces[45] = WallHandler.getRow14() + 3;
+		
+		let availableSpaces[46] = WallHandler.getRow1() + 28;
+		let availableSpaces[47] = WallHandler.getRow3() + 28;
+		let availableSpaces[48] = WallHandler.getRow4() + 28;
+		let availableSpaces[49] = WallHandler.getRow5() + 28;
+		let availableSpaces[50] = WallHandler.getRow6() + 28;
+		let availableSpaces[51] = WallHandler.getRow7() + 28;
+		let availableSpaces[52] = WallHandler.getRow8() + 28;
+		let availableSpaces[53] = WallHandler.getRow9() + 28;
+		let availableSpaces[54] = WallHandler.getRow10() + 28;
+		let availableSpaces[55] = WallHandler.getRow11() + 28;
+		let availableSpaces[56] = WallHandler.getRow12() + 28;
+		let availableSpaces[57] = WallHandler.getRow14() + 28;
+		
+		// cols 4, 27 -> from 58 to 69
+		let availableSpaces[58] = WallHandler.getRow1() + 4;
+		let availableSpaces[59] = WallHandler.getRow3() + 4;
+		let availableSpaces[60] = WallHandler.getRow6() + 4;
+		let availableSpaces[61] = WallHandler.getRow9() + 4;
+		let availableSpaces[62] = WallHandler.getRow12() + 4;
+		let availableSpaces[63] = WallHandler.getRow14() + 4;
+		
+		let availableSpaces[64] = WallHandler.getRow1() + 27;
+		let availableSpaces[65] = WallHandler.getRow3() + 27;
+		let availableSpaces[66] = WallHandler.getRow6() + 27;
+		let availableSpaces[67] = WallHandler.getRow9() + 27;
+		let availableSpaces[68] = WallHandler.getRow12() + 27;
+		let availableSpaces[69] = WallHandler.getRow14() + 27;
+		
+		// cols 5, 26 -> 70 to 85
+		let availableSpaces[70] = WallHandler.getRow1() + 5;
+		let availableSpaces[71] = WallHandler.getRow2() + 5;
+		let availableSpaces[72] = WallHandler.getRow3() + 5;
+		let availableSpaces[73] = WallHandler.getRow6() + 5;
+		let availableSpaces[74] = WallHandler.getRow9() + 5;
+		let availableSpaces[75] = WallHandler.getRow12() + 5;
+		let availableSpaces[76] = WallHandler.getRow13() + 5;
+		let availableSpaces[77] = WallHandler.getRow14() + 5;
+		
+		let availableSpaces[78] = WallHandler.getRow1() + 26;
+		let availableSpaces[79] = WallHandler.getRow2() + 26;
+		let availableSpaces[80] = WallHandler.getRow3() + 26;
+		let availableSpaces[81] = WallHandler.getRow6() + 26;
+		let availableSpaces[82] = WallHandler.getRow9() + 26;
+		let availableSpaces[83] = WallHandler.getRow12() + 26;
+		let availableSpaces[84] = WallHandler.getRow13() + 26;
+		let availableSpaces[85] = WallHandler.getRow14() + 26;
+		
+		// cols 6, 25 -> from 86 to 93
+		let availableSpaces[86] = WallHandler.getRow3() + 6;
+		let availableSpaces[87] = WallHandler.getRow6() + 6;
+		let availableSpaces[88] = WallHandler.getRow9() + 6;
+		let availableSpaces[89] = WallHandler.getRow12() + 6;
+		
+		let availableSpaces[90] = WallHandler.getRow3() + 25;
+		let availableSpaces[91] = WallHandler.getRow6() + 25;
+		let availableSpaces[92] = WallHandler.getRow9() + 25;
+		let availableSpaces[93] = WallHandler.getRow12() + 25;
+		
+		// cols 7, 24 -> from 94 to 
+		let availableSpaces[94] = WallHandler.getRow1() + 7;
+		let availableSpaces[95] = WallHandler.getRow2() + 7;
+		let availableSpaces[96] = WallHandler.getRow3() + 7;
+		let availableSpaces[97] = WallHandler.getRow4() + 7;
+		let availableSpaces[98] = WallHandler.getRow5() + 7;
+		let availableSpaces[99] = WallHandler.getRow6() + 7;
+		let availableSpaces[100] = WallHandler.getRow7() + 7;
+		let availableSpaces[101] = WallHandler.getRow8() + 7;
+		let availableSpaces[102] = WallHandler.getRow9() + 7;
+		let availableSpaces[103] = WallHandler.getRow10() + 7;
+		let availableSpaces[104] = WallHandler.getRow11() + 7;
+		let availableSpaces[105] = WallHandler.getRow12() + 7;
+		let availableSpaces[106] = WallHandler.getRow13() + 7;
+		let availableSpaces[107] = WallHandler.getRow14() + 7;
+		
+		let availableSpaces[108] = WallHandler.getRow1() + 24;
+		let availableSpaces[109] = WallHandler.getRow2() + 24;
+		let availableSpaces[110] = WallHandler.getRow3() + 24;
+		let availableSpaces[111] = WallHandler.getRow4() + 24;
+		let availableSpaces[112] = WallHandler.getRow5() + 24;
+		let availableSpaces[113] = WallHandler.getRow6() + 24;
+		let availableSpaces[114] = WallHandler.getRow7() + 24;
+		let availableSpaces[115] = WallHandler.getRow8() + 24;
+		let availableSpaces[116] = WallHandler.getRow9() + 24;
+		let availableSpaces[117] = WallHandler.getRow10() + 24;
+		let availableSpaces[118] = WallHandler.getRow11() + 24;
+		let availableSpaces[119] = WallHandler.getRow12() + 24;
+		let availableSpaces[120] = WallHandler.getRow13() + 24;
+		let availableSpaces[121] = WallHandler.getRow14() + 24;
+		
+		// cols 8 - 23 from 122 - 202
+		let index = 0;
+		let tempLocation = 122;
+		
+		while (index < 16) {
+			let availableSpaces[tempLocation] = WallHandler.getRow1() + index + 8;
+			let availableSpaces[tempLocation + 1] = WallHandler.getRow4() + index + 8;
+			let availableSpaces[tempLocation + 2] = WallHandler.getRow7() + index + 8;
+			let availableSpaces[tempLocation + 3] = WallHandler.getRow10() + index + 8;
+			let availableSpaces[tempLocation + 4] = WallHandler.getRow14() + index + 8;
+			
+			let tempLocation = tempLocation + 5;
+			let index = index + 1;
+		}
+		
+		return;
+	}
+}
+
+
+

@@ -1,0 +1,124 @@
+// Dungeon Dude
+// Utility.jack
+// Author: Marcin Swieczkowski
+// Created: Wed Mar 22 20:18:33 CET 2017
+//
+// A set of useful utility functions ranging from display,
+// random numbers, constants, and more
+
+/** Utility class for useful static functions and variables **/
+class Utility {
+    static int SCR_WIDTH;  // screen width, in cells (not pixels)
+    static int SCR_HEIGHT; // screen height
+
+    /** Return screen width **/
+    function int SCR_W() { return SCR_WIDTH; }
+    /** Return screen height **/
+    function int SCR_H() { return SCR_HEIGHT; }
+
+    /** Initialize static variables **/
+    function void initUtil() {
+        let SCR_WIDTH = 64;
+        let SCR_HEIGHT = 23;
+        return;
+    }
+
+    /* MATH FUNCTIONS */
+
+    /** Return a % b **/
+    function int mod(int a, int b) {
+        var int d;
+
+        let d = a / b;
+        return a - (b * d);
+    }
+    /** Return true if n is between a and b, inclusive **/
+    function boolean between(int n, int a, int b) {
+        return (~(n < a)) & (~(n > b));
+    }
+    /** Return true if one range overlaps another **/
+    function boolean overlaps(int a1, int b1, int a2, int b2) {
+        return Utility.between(a1, a2, b2) | Utility.between(a2, a1, b1);
+    }
+
+    /* STRING FUNCTIONS */
+
+    /** Append s2 to the end of s1 and return the resulting string. **/
+    function String stringAppend(String s1, String s2) {
+        var String s;
+        var int i;
+
+        // Allocate a new string with enough space
+        let s = String.new(s1.length() + s2.length());
+
+        // Build the new string one char at a time
+        let i = 0;
+        while (i < s1.length()) {
+            let s = s.appendChar(s1.charAt(i));
+            let i = i + 1;
+        }
+        let i = 0;
+        while (i < s2.length()) {
+            let s = s.appendChar(s2.charAt(i));
+            let i = i + 1;
+        }
+
+        return s;
+    }
+    /** Return true iff s1 and s2 are equal **/
+    function boolean stringEquals(String s1, String s2) {
+        var int i;
+        var int l;
+
+        if (~(s1.length() = s2.length())) {
+            return 0;
+        }
+
+        // Strings are equal in length, now check one char at a time
+        let i = 0; let l = s1.length();
+        while (i < l) {
+            if (~(s1.charAt(i) = s2.charAt(i))) { return 0; }
+            let i = i + 1;
+        }
+
+        return -1; // equal!
+    }
+
+    /* OUTPUT FUNCTIONS */
+
+    /** Output a string at position (i, j) **/
+    function void outString(int i, int j, String s) {
+        do Output.moveCursor(i, j);
+        do Output.printString(s);
+        return;
+    }
+    /** Output a centered string at row i **/
+    function void outStringCenter(int i, String s) {
+        var int len, j;
+
+        let len = s.length();
+        let j = (Utility.SCR_W() / 2) - (len / 2);
+
+        do Utility.outString(i, j, s);
+        return;
+    }
+    /** Output an int at position (i, j) **/
+    function void outInt(int i, int j, int n) {
+        do Output.moveCursor(i, j);
+        do Output.printInt(n);
+        return;
+    }
+    /** Output a char at position (i, j) **/
+    function void outChar(int i, int j, char c) {
+        do Output.moveCursor(i, j);
+        do Output.printChar(c);
+        return;
+    }
+    /** Print a string at the cursor position and insert a newline **/
+    function void printStringLn(String s) {
+        do Output.printString(s);
+        do Output.println();
+        return;
+    }
+
+}

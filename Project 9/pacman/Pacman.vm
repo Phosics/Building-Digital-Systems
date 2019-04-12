@@ -1,0 +1,900 @@
+function Pacman.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+call WallHandler.getRow1 0
+push constant 1
+add
+pop this 0
+push constant 0
+not
+pop this 1
+push this 0
+call Pacman.drawPacmanOpenRight 1
+pop temp 0
+push constant 203
+pop this 3
+push argument 0
+pop this 2
+push pointer 0
+return
+function Pacman.getLocation 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Pacman.canMoveUp 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+call WallHandler.getRow1 0
+sub
+call Pacman.isLocationAvailable 2
+return
+function Pacman.canMoveDown 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+call WallHandler.getRow1 0
+add
+call Pacman.isLocationAvailable 2
+return
+function Pacman.canMoveLeft 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push constant 1
+sub
+call Pacman.isLocationAvailable 2
+return
+function Pacman.canMoveRight 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push constant 1
+add
+call Pacman.isLocationAvailable 2
+return
+function Pacman.isLocationAvailable 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 3
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 2
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Pacman.stop 0
+push argument 0
+pop pointer 0
+push this 0
+call Pacman.drawPacmanOpenRight 1
+pop temp 0
+push constant 0
+return
+function Pacman.moveRight 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Pacman.canMoveRight 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Pacman.erasePacman 1
+pop temp 0
+push this 0
+push constant 1
+add
+pop this 0
+push pointer 0
+push this 0
+call Pacman.getStateRight 2
+pop temp 0
+push this 1
+not
+pop this 1
+label IF_FALSE0
+push constant 0
+return
+function Pacman.moveUp 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Pacman.canMoveUp 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Pacman.erasePacman 1
+pop temp 0
+push this 0
+call WallHandler.getRow1 0
+sub
+pop this 0
+push pointer 0
+push this 0
+call Pacman.getStateUp 2
+pop temp 0
+push this 1
+not
+pop this 1
+label IF_FALSE0
+push constant 0
+return
+function Pacman.moveLeft 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Pacman.canMoveLeft 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Pacman.erasePacman 1
+pop temp 0
+push this 0
+push constant 1
+sub
+pop this 0
+push pointer 0
+push this 0
+call Pacman.getStateLeft 2
+pop temp 0
+push this 1
+not
+pop this 1
+label IF_FALSE0
+push constant 0
+return
+function Pacman.moveDown 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Pacman.canMoveDown 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Pacman.erasePacman 1
+pop temp 0
+push this 0
+call WallHandler.getRow1 0
+add
+pop this 0
+push pointer 0
+push this 0
+call Pacman.getStateDown 2
+pop temp 0
+push this 1
+not
+pop this 1
+label IF_FALSE0
+push constant 0
+return
+function Pacman.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Pacman.getStateRight 0
+push argument 0
+pop pointer 0
+push this 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+call Pacman.drawPacmanOpenRight 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push argument 1
+call Pacman.drawPacmanClose 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Pacman.getStateLeft 0
+push argument 0
+pop pointer 0
+push this 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+call Pacman.drawPacmanOpenLeft 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push argument 1
+call Pacman.drawPacmanClose 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Pacman.getStateUp 0
+push argument 0
+pop pointer 0
+push this 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+call Pacman.drawPacmanOpenUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push argument 1
+call Pacman.drawPacmanClose 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Pacman.getStateDown 0
+push argument 0
+pop pointer 0
+push this 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+call Pacman.drawPacmanOpenDown 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push argument 1
+call Pacman.drawPacmanClose 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Pacman.drawPacmanOpenRight 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 32764
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8190
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 62
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 62
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8188
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 32764
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Pacman.drawPacmanOpenDown 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1984
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8176
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 31806
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 15420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 15420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 6168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 2064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Pacman.drawPacmanOpenLeft 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8188
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 16382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 32704
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 31744
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 31744
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 32704
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32760
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 16382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Pacman.drawPacmanOpenUp 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 6168
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 15420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 15420
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 31806
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 32382
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 4088
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 992
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Pacman.drawPacmanClose 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Pacman.erasePacman 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return

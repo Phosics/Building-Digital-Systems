@@ -1,0 +1,10 @@
+class Main {
+    function void main() {
+        var PacmanGame game;
+		do WallHandler.initStatics();
+        let game = PacmanGame.new();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}

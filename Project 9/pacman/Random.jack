@@ -1,0 +1,63 @@
+// Dungeon Dude
+// Random.jack
+// Author: Marcin Swieczkowski
+// Created: Thu Mar 23 12:27:08 CET 2017
+//
+// About:
+//
+// PRNG (random number) implementation
+// Taken from:
+// http://nand2tetris-questions-and-answers-forum.32033.n3.nabble.com/
+// Pseudo-Random-Number-Generator-td4026059.html
+//
+// Usage:
+//
+// First call Random.setSeed() with some number, probably user-entered.
+// Then you are ready to freely call Random.rand() and Random.randRange().
+
+/** Random number class **/
+class Random {
+    static int seed;
+    static int A;
+    static int M;
+    static int Q;
+    static int R;
+
+    /** Set the initial random number seed **/
+    function void setSeed(int newSeed) {
+        let seed = newSeed;
+        if (seed = 0) {
+            let seed = 1;
+        }
+
+        let A = 219;
+        let M = 32749;
+        let Q = M / A;
+        let R = Utility.mod(M, A);
+
+        return;
+    }
+
+    /** Returns a random int in range 0..(M-1) inclusive **/
+    function int rand() {
+        var int test;
+
+        let test = (A * (Utility.mod(seed, Q))) - (R * (seed / Q));
+        if (test < 0) {
+            let seed = test + M;
+        }
+        else {
+            let seed = test;
+        }
+
+        return seed;
+    }
+
+    /** Returns a random int in range low..high inclusive **/
+    function int randRange(int low, int high) {
+        var int scale;
+
+        let scale = (M / (high - low + 1));
+        return (Random.rand() / scale) + low;
+    }
+}

@@ -1,0 +1,286 @@
+class Pacman {
+	field int location; 
+	field boolean state;
+	field Array availableSpaces;
+	field int length;
+	
+	constructor Pacman new(Array as) {
+		let location = WallHandler.getRow1() + 1;
+		let state = true;
+		do Pacman.drawPacmanOpenRight(location);
+		let length = 203;
+		let availableSpaces = as;
+
+		return this;
+	}
+	
+	method int getLocation() {
+		return location;
+	}
+	
+	method bool canMoveUp() {
+		return isLocationAvailable(location - WallHandler.getRow1());
+	}
+	
+	method bool canMoveDown() {
+		return isLocationAvailable(location + WallHandler.getRow1());
+	}
+	
+	method bool canMoveLeft() {
+		return isLocationAvailable(location - 1);
+	}
+	
+	method bool canMoveRight() {
+		return isLocationAvailable(location + 1);
+	}
+	
+	method bool isLocationAvailable(int location) {
+		var int index;
+		
+		let index = 0;
+		
+		while(index < length) {
+			if(availableSpaces[index] = location) {
+				return true;
+			}
+			
+			let index = index + 1;
+		}
+		
+		return false;
+	}
+	
+	method void stop() {
+		do Pacman.drawPacmanOpenRight(location);
+		
+		return;
+	}
+		
+	method void moveRight() {
+		if (canMoveRight()) {
+			do Pacman.erasePacman(location);
+			let location = location + 1;
+			do getStateRight(location);
+			let state = ~(state);
+		}
+		
+		return;
+	}
+   
+   method void moveUp() {
+		if (canMoveUp()) {
+			do Pacman.erasePacman(location);
+			let location = location - WallHandler.getRow1();
+			do getStateUp(location);
+			let state = ~(state);
+		}
+		return;
+	}
+   
+   method void moveLeft() {
+		if (canMoveLeft()) {
+			do Pacman.erasePacman(location);
+			let location = location - 1;
+			do getStateLeft(location);
+			let state = ~(state);
+		}
+		
+		return;
+	}
+	
+	method void moveDown() {
+		if (canMoveDown()) {
+			do Pacman.erasePacman(location);
+			let location = location + WallHandler.getRow1();
+			do getStateDown(location);
+			let state = ~(state);
+		}
+		
+		return;
+	}
+  
+	/** Disposes this square. */
+	method void dispose() {
+		do Memory.deAlloc(this);
+		
+		return;
+	}
+
+	method void getStateRight(int location) {
+		if (state) {
+			do Pacman.drawPacmanOpenRight(location);
+		} else {
+			do Pacman.drawPacmanClose(location);
+		}
+		
+		return;
+	}
+	
+	method void getStateLeft(int location) {
+		if (state) {
+			do Pacman.drawPacmanOpenLeft(location);
+		} else {
+			do Pacman.drawPacmanClose(location);
+		}
+		
+		return;
+	}
+	
+	method void getStateUp(int location) {
+		if (state) {
+			do Pacman.drawPacmanOpenUp(location);
+		} else {
+			do Pacman.drawPacmanClose(location);
+		}
+		
+		return;
+	}
+	
+	method void getStateDown(int location) {
+		if (state) {
+			do Pacman.drawPacmanOpenDown(location);
+		} else {
+			do Pacman.drawPacmanClose(location);
+		}
+		
+		return;
+	}
+   
+	function void drawPacmanOpenRight(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2016);
+		do Memory.poke(memAddress+64, 8184);
+		do Memory.poke(memAddress+96, 16380);
+		do Memory.poke(memAddress+128, 32764);
+		do Memory.poke(memAddress+160, 8190);
+		do Memory.poke(memAddress+192, 1022);
+		do Memory.poke(memAddress+224, 62);
+		do Memory.poke(memAddress+256, 62);
+		do Memory.poke(memAddress+288, 1022);
+		do Memory.poke(memAddress+320, 8188);
+		do Memory.poke(memAddress+352, 32764);
+		do Memory.poke(memAddress+384, 16376);
+		do Memory.poke(memAddress+416, 8184);
+		do Memory.poke(memAddress+448, 2016);
+		do Memory.poke(memAddress+480, 0);
+		
+		return;
+	}
+
+	function void drawPacmanOpenDown(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 1984);
+		do Memory.poke(memAddress+64, 8176);
+		do Memory.poke(memAddress+96, 16380);
+		do Memory.poke(memAddress+128, 16380);
+		do Memory.poke(memAddress+160, 32766);
+		do Memory.poke(memAddress+192, 32382);
+		do Memory.poke(memAddress+224, 32382);
+		do Memory.poke(memAddress+256, 32382);
+		do Memory.poke(memAddress+288, 32382);
+		do Memory.poke(memAddress+320, 31806);
+		do Memory.poke(memAddress+352, 15420);
+		do Memory.poke(memAddress+384, 15420);
+		do Memory.poke(memAddress+416, 6168);
+		do Memory.poke(memAddress+448, 2064);
+		do Memory.poke(memAddress+480, 0);
+		
+		return;
+	}
+
+	function void drawPacmanOpenLeft(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2016);
+		do Memory.poke(memAddress+64, 8184);
+		do Memory.poke(memAddress+96, 8188);
+		do Memory.poke(memAddress+128, 16382);
+		do Memory.poke(memAddress+160, 16376);
+		do Memory.poke(memAddress+192, 32704);
+		do Memory.poke(memAddress+224, 31744);
+		do Memory.poke(memAddress+256, 31744);
+		do Memory.poke(memAddress+288, 32704);
+		do Memory.poke(memAddress+320, 32760);
+		do Memory.poke(memAddress+352, 16382);
+		do Memory.poke(memAddress+384, 16380);
+		do Memory.poke(memAddress+416, 8184);
+		do Memory.poke(memAddress+448, 2016);
+		do Memory.poke(memAddress+480, 0);
+		
+		return;
+	}
+
+	function void drawPacmanOpenUp(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2064);
+		do Memory.poke(memAddress+64, 6168);
+		do Memory.poke(memAddress+96, 15420);
+		do Memory.poke(memAddress+128, 15420);
+		do Memory.poke(memAddress+160, 31806);
+		do Memory.poke(memAddress+192, 32382);
+		do Memory.poke(memAddress+224, 32382);
+		do Memory.poke(memAddress+256, 32382);
+		do Memory.poke(memAddress+288, 32382);
+		do Memory.poke(memAddress+320, 32766);
+		do Memory.poke(memAddress+352, 16380);
+		do Memory.poke(memAddress+384, 16380);
+		do Memory.poke(memAddress+416, 4088);
+		do Memory.poke(memAddress+448, 992);
+		do Memory.poke(memAddress+480, 0);
+		
+		return;
+	}
+
+	function void drawPacmanClose(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 2016);
+		do Memory.poke(memAddress+64, 8184);
+		do Memory.poke(memAddress+96, 16380);
+		do Memory.poke(memAddress+128, 16380);
+		do Memory.poke(memAddress+160, 32766);
+		do Memory.poke(memAddress+192, 32766);
+		do Memory.poke(memAddress+224, 32766);
+		do Memory.poke(memAddress+256, 32766);
+		do Memory.poke(memAddress+288, 32766);
+		do Memory.poke(memAddress+320, 16380);
+		do Memory.poke(memAddress+352, 16380);
+		do Memory.poke(memAddress+384, 8184);
+		do Memory.poke(memAddress+416, 8184);
+		do Memory.poke(memAddress+448, 2016);
+		do Memory.poke(memAddress+480, 0);
+		
+		return;
+	}
+
+	function void erasePacman(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		
+		return;
+	}
+}

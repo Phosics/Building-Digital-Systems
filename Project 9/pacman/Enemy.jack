@@ -1,0 +1,237 @@
+class Enemy {
+	field int location;
+	field Array availableSpaces;
+	field int length;
+	field PacmanGame pacgame;
+	field int direction;
+	field Random random;
+	
+	constructor Enemy new(PacmanGame game, Array available, int len, int Enemylocation) {
+		var int index, tempLocation;
+		
+		let direction = Random.randRange(0, 3);
+		let pacgame = game;
+		let length = len;
+		let availableSpaces = available;
+		let location = Enemylocation;
+		
+		do Enemy.drawRightEnemy(location);
+		
+		return this;
+	}
+	
+	method void move() {
+		var int num;
+		var bool moved;
+		
+		let moved = false;
+		let num = 0;
+		
+		if(pacgame.isVisited(location)) {
+			do erase();
+		}
+		else {
+			do WallHandler.drawFood(location);
+		}
+		
+		while(~moved) {
+			if(canMoveDown()) {
+				let num = num + 1;
+			}
+			if(canMoveUp()) {
+				let num = num + 1;
+			}
+			if(canMoveLeft()) {
+				let num = num + 1;
+			}
+			if(canMoveRight()) {
+				let num = num + 1;
+			}
+			
+			if(num > 2) {
+				let direction = Random.randRange(0, 3);
+			}
+		
+			if(direction = 0) {
+				if(canMoveUp()) {
+					do moveUp();
+					let moved = true;
+				}
+			}
+			
+			if(direction = 1) {
+				if(canMoveDown()) {
+					do moveDown();
+					let moved = true;
+				}
+			}
+			
+			if(direction = 2) {
+				if(canMoveLeft()) {
+					do moveLeft();
+					let moved = true;
+				}
+			}
+			
+			if(direction = 3) {
+				if(canMoveRight()) {
+					do moveRight();
+					let moved = true;
+				}
+			}
+			
+			if(~moved) {
+				let direction = Random.randRange(0, 3);
+			}
+		}
+		
+		return;
+	}
+	
+	method void moveUp() {
+		let location = location - WallHandler.getRow1();
+		
+		do Enemy.drawRightEnemy(location);
+		
+		return;
+	}
+	
+	method void moveDown() {
+		let location = location + WallHandler.getRow1();
+		do Enemy.drawLeftEnemy(location);
+		
+		return;
+	}
+	
+	method void moveLeft() {
+		let location = location - 1;
+		do Enemy.drawLeftEnemy(location);
+		
+		return;
+	}
+	
+	method void moveRight() {
+		let location = location + 1;
+		do Enemy.drawRightEnemy(location);
+		
+		return;
+	}
+	
+	method bool canMoveUp() {
+		return isLocationAvailable(location - WallHandler.getRow1());
+	}
+	
+	method bool canMoveDown() {
+		return isLocationAvailable(location + WallHandler.getRow1());
+	}
+	
+	method bool canMoveLeft() {
+		return isLocationAvailable(location - 1);
+	}
+	
+	method bool canMoveRight() {
+		return isLocationAvailable(location + 1);
+	}
+	
+	method bool isLocationAvailable(int location) {
+		var int index;
+		
+		let index = 0;
+		
+		while(index < length) {
+			if(availableSpaces[index] = location) {
+				return true;
+			}
+			
+			let index = index + 1;
+		}
+		
+		return false;
+	}
+	
+	method void erase() {
+		do Enemy.eraseEnemy(location);
+		
+		return;
+	}
+	
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+	
+	method int getLocation() {
+		return location;
+	}
+	
+	function void eraseEnemy(int location) {
+		var int memAddress;
+		
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		
+		return;
+	}
+	
+	function void drawRightEnemy(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 960);
+		do Memory.poke(memAddress+64, 4080);
+		do Memory.poke(memAddress+96, 8184);
+		do Memory.poke(memAddress+128, 13116);
+		do Memory.poke(memAddress+160, 13116);
+		do Memory.poke(memAddress+192, 16380);
+		do Memory.poke(memAddress+224, 32766);
+		do Memory.poke(memAddress+256, 32766);
+		do Memory.poke(memAddress+288, 28686);
+		do Memory.poke(memAddress+320, 30062);
+		do Memory.poke(memAddress+352, 30382);
+		do Memory.poke(memAddress+384, 28686);
+		do Memory.poke(memAddress+416, 32766);
+		do Memory.poke(memAddress+448, 28278);
+		do Memory.poke(memAddress+480, 18018);
+		return;
+	}
+	
+	function void drawLeftEnemy(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 960);
+		do Memory.poke(memAddress+64, 4080);
+		do Memory.poke(memAddress+96, 8184);
+		do Memory.poke(memAddress+128, 15564);
+		do Memory.poke(memAddress+160, 15564);
+		do Memory.poke(memAddress+192, 16380);
+		do Memory.poke(memAddress+224, 32766);
+		do Memory.poke(memAddress+256, 32766);
+		do Memory.poke(memAddress+288, 28686);
+		do Memory.poke(memAddress+320, 30382);
+		do Memory.poke(memAddress+352, 30062);
+		do Memory.poke(memAddress+384, 28686);
+		do Memory.poke(memAddress+416, 32766);
+		do Memory.poke(memAddress+448, 28278);
+		do Memory.poke(memAddress+480, 18018);
+		
+		return;
+	}
+}
